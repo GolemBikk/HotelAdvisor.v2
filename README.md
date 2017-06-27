@@ -1,7 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hotel Advisor project, version 2.
 
 Things you may want to cover:
 
