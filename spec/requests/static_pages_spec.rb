@@ -1,47 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe "StaticPages", type: :feature do
+  subject { page }
+
   describe "GET /static_pages/home" do
-    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      expect(page).to have_title('Home')
-    end
-    it "should have the content 'Home page'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Home page')
-    end
+    before { visit home_path }
+    it { should have_title 'Home' }
+    it { should have_content 'Home page'}
   end
 
   describe "GET /static_pages/help" do
-    it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_title('Help')
-    end
-    it "should have the content 'Help page'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help page')
-    end
+    before { visit help_path }
+    it { should have_title 'Help' }
+    it { should have_content 'Help page'}
   end
 
   describe "GET /static_pages/about" do
-    it "should have the title 'About us'" do
-      visit '/static_pages/about'
-      expect(page).to have_title('About us')
-    end
-    it "should have the content 'About us page'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About us page')
-    end
+    before { visit about_path }
+    it { should have_title 'About us' }
+    it { should have_content 'About us page'}
   end
 
   describe "GET /static_pages/contact" do
-    it "should have the title 'Contact'" do
-      visit '/static_pages/contact'
-      expect(page).to have_title('Contact')
-    end
-    it "should have the content 'Contact page'" do
-      visit '/static_pages/contact'
-      expect(page).to have_content('Contact page')
-    end
+    before { visit contact_path }
+    it { should have_title 'Contact' }
+    it { should have_content 'Contact page'}
   end
 end
