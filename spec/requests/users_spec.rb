@@ -18,6 +18,6 @@ RSpec.describe "Users", type: :feature do
   describe "GET /users/edit" do
     before { visit edit_user_registration_path}
     it { should have_title 'Edit account'}
-    it { should have_content 'Edit'}
+    it { should have_selector('h1', text: 'Edit')}
   end
 end
