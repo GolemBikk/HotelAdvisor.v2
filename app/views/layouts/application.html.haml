@@ -13,8 +13,7 @@
     = render 'layouts/header'
 
     - flash.each do |key, value|
-      %div
-        = value
+      = content_tag div: value, class: 'flash-message'
 
     = yield
 
