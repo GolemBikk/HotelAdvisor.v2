@@ -12,6 +12,10 @@
 
     = render 'layouts/header'
 
+    - flash.each do |key, value|
+      %div
+        = value
+
     = yield
 
     = render 'layouts/footer'
