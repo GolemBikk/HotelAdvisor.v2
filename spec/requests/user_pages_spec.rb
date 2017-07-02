@@ -3,13 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :feature do
   subject { page }
 
-  describe 'GET /users/sing_in' do
-    before { visit new_user_session_path}
-
-    it { should have_title 'Log in'}
-    it { should have_content 'Log in'}
-  end
-
   describe 'GET /users/sign_up' do
     before { visit new_user_registration_path}
 
@@ -52,6 +45,8 @@ RSpec.describe 'Users', type: :feature do
 
         it { should have_title(user.first_name) }
         it { should have_css('flash-message') }
+        it { should have_link('Profile',     href: user_path(user)) }
+        it { should have_link('Log out',    href: destroy_user_session_path) }
       end
     end
   end

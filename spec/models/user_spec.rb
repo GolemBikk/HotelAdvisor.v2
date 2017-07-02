@@ -12,6 +12,7 @@ RSpec.describe User do
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:authentication_token) }
 
   it { should be_valid }
 
@@ -86,5 +87,10 @@ RSpec.describe User do
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = 'mismatch' }
     it { should_not be_valid }
+  end
+
+  describe 'authentication token' do
+    before { @user.save }
+    it { expect(@user.authentication_token).not_to be_blank }
   end
 end

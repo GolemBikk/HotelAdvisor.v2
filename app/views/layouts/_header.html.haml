@@ -7,10 +7,14 @@
       %li
         = link_to 'Hotels', '#'
       %li
+        = link_to 'Users', '#'
+      %li
         = link_to 'Help', help_path
       - if user_signed_in?
         %li
           = link_to 'Profile', user_path(current_user)
+        %li
+          = link_to 'Settings' '#'
         %li
           = link_to 'Log out', destroy_user_session_path, :method => :delete
       - else
