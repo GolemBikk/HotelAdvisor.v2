@@ -1,0 +1,7 @@
+%tr
+  %td
+    = gravatar_for user, size: 52
+  %td
+    = link_to "#{user.first_name} #{user.last_name}", '#'
+  %td
+    = link_to 'Delete', user_path(user), method: :delete

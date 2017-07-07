@@ -29,14 +29,28 @@ RSpec.describe 'AuthenticationPages', type: :feature do
       end
     end
 
+    let(:user) { FactoryGirl.create(:user) }
+
     describe 'with valid information' do
-      let(:user) { FactoryGirl.create(:user) }
       before { valid_sign_in(user) }
 
       it { should have_title(user.first_name) }
-      it { should have_link('Profile',     href: user_path(user)) }
+      it { should have_link('Users',    href: users_path) }
+      it { should have_link('Profile',    href: user_path(user)) }
+      it { should have_link('Settings',   href: edit_user_registration_path(user)) }
       it { should have_link('Log out',    href: destroy_user_session_path) }
       it { should_not have_link('Sign in', href: new_user_session_path) }
+    end
+
+    describe 'when attempting to visit a protected page' do
+      before do
+        visit edit_user_registration_path
+        valid_sign_in(user)
+      end
+
+      describe 'after signing in' do
+        it { should have_title('Edit profile')}
+      end
     end
   end
 

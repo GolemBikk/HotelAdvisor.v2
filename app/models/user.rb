@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,7 +15,8 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
 
   before_save :ensure_authentication_token!,
-              :email_downcase!
+              :email_downcase
+  after_save :set_user_role
 
   def ensure_authentication_token!
     if authentication_token.blank?
@@ -22,8 +24,18 @@ class User < ApplicationRecord
     end
   end
 
-  def email_downcase!
+  def email_downcase
     self.email.downcase!
+  end
+
+  def set_user_role
+    self.add_role :user
+  end
+
+  def set_admin_role
+    if !self.has_role? :admin
+      self.add_role :admin
+    end
   end
 
   private
