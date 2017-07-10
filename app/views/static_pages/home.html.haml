@@ -1,4 +1,22 @@
 = provide :title, 'Home'
-%h1
-  Home page
-%p Find me in app/views/static_pages/home.html.haml
+
+.search-banner
+  .title
+    %h1 НАЧНИТЕ СВОЁ ПУТЕШЕСТВИЕ ЗДЕСЬ!
+    %h4
+      Ищите, просматривайте информацию об отелях, читайте отзывы
+      и участвуйте в формировании рейтинга
+
+  = render 'search_form'
+
+.best-banner
+  .title
+    %h2 Лучшие отели по мнению пользователей
+
+  = render 'best_hotels'
+
+.news-banner
+  .title
+    %h2 Последние новости сайта
+
+  = render 'last_news'

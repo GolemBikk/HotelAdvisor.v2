@@ -1,0 +1,28 @@
+@import "layouts/header";
+@import "layouts/footer";
+@import "static-pages/home";
+@import "starrr";
+
+.bottom-line-border {
+  border-bottom: 1px solid darkgray;
+}
+.right-line-border {
+  border-right: 1px solid lightgray;
+}
+.center {
+  text-align: center;
+}
+.debug_dump {
+  margin: 3% 10% 3% 10%;
+}
+.flash-messages {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  .alert {
+    border-radius: 0;
+    border-color: darkgray;
+    margin: 0;
+  }
+}

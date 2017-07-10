@@ -1,0 +1,38 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "layouts/search-form";
+@import "layouts/best_hotels";
+@import "layouts/last_news";
+
+.search-banner {
+  height: 500px;
+  background-image: url("paradise.jpg");
+  padding: 8% 15% 0% 15%;
+
+  .title {
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.best-banner {
+
+  .title {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.news-banner {
+
+  .title {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.banner-body {
+  margin: 5px 15% 20px 15%;
+}

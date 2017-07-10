@@ -1,0 +1,64 @@
+#logo{ //надо корректировать
+  color: black;
+  font-family: monospace;
+  font-size: 22px;
+  font-weight: 900;
+
+  a{
+    padding-top: 10px;
+  }
+}
+
+#btn-login{
+  color: cornflowerblue;
+}
+#btn-login:hover{
+  background-color: cornflowerblue;
+  color: white;
+}
+
+#btn-register{
+  background-color: cornflowerblue;
+  color: white;
+}
+#btn-register:hover{
+  background-color: white;
+  color: cornflowerblue;
+}
+
+.btn{
+  border-color: cornflowerblue;
+  border-width: 2px;
+}
+
+.collapse{
+  margin-top: 6px;
+}
+
+.navbar{
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+.container-fluid{
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.navbar-nav{
+
+  li{
+    padding-left: 5px;
+    padding-right: 5px;
+
+    a{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-weight: 600;
+      color: darkorange;
+    }
+    a:hover{
+      background-color: inherit;
+    }
+  }
+}

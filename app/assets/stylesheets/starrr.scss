@@ -1,0 +1,12 @@
+$starrrColor: darkorange !default;
+
+.starrr {
+
+  span {
+    font-size: 16px;
+    padding: 0 1px;
+    cursor: pointer;
+    color: $starrrColor;
+    text-decoration: none;
+  }
+}

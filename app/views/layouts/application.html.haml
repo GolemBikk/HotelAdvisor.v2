@@ -12,11 +12,22 @@
 
     = render 'layouts/header'
 
-    - flash.each do |key, value|
-      = content_tag :div, value, class: 'flash-message'
-
     = yield
 
     = render 'layouts/footer'
+
+    .flash-messages
+      - flash.each do |key, value|
+        %div{class: "alert alert-#{key}", role: 'alert'}
+          - case key
+          - when 'success'
+            %i.glyphicon.glyphicon-ok-sign
+          - when 'danger'
+            %i.glyphicon.glyphicon-remove-sign
+          - when 'info'
+            %i.glyphicon.glyphicon-info-sign
+          - when 'warning'
+            %i.glyphicon.glyphicon-question-sign
+          = value
 
     = debug(params) if Rails.env.development?

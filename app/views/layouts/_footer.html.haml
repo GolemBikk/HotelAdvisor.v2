@@ -1,9 +1,22 @@
 %footer
-  %nav
-    %ul
-      %li
-        = link_to 'About us', about_path
-      %li
-        = link_to 'Contact', contact_path
-      %li
-        = link_to 'News', '#'
+  .row
+    .site-info.col-xs-4
+      %h4 Hotel Advisor
+      %p
+        Сайт для поиска и оценки отелей, посещаемых пользователями.
+        Так же содержит новостные материалы, связанные с туризмом
+      %p
+        Copyright © 2017 Hotel Advisor.
+        %br
+        Все права защищены
+    .info-links.col-xs-4
+      %h4 Рекомендуем посетить:
+      %nav
+        %ul.nav
+          %li
+            = link_to 'Помощь', help_path
+          %li
+            = link_to 'О нас', about_path
+          %li
+            = link_to 'Контакты', contact_path
+

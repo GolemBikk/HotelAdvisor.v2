@@ -1,0 +1,23 @@
+footer {
+  background-color: #575757;
+  color: white;
+  padding: 3% 10% 3% 10%;
+
+  .nav{
+
+    li{
+
+      a{
+        color: white;
+        font-weight: 600;
+      }
+      a:hover{
+        background-color: #575757;
+      }
+    }
+  }
+}
+
+.site-info {
+  text-align: justify;
+}
