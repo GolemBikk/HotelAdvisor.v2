@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :hotels
+
   validates :first_name, presence: true,
             length: { maximum: 50 }
   validates :last_name, presence: true,
@@ -16,7 +18,7 @@ class User < ApplicationRecord
 
   before_save :ensure_authentication_token!,
               :email_downcase
-  after_save :set_user_role
+  after_save :user_role
 
   def ensure_authentication_token!
     if authentication_token.blank?
@@ -28,11 +30,11 @@ class User < ApplicationRecord
     self.email.downcase!
   end
 
-  def set_user_role
+  def user_role
     self.add_role :user
   end
 
-  def set_admin_role
+  def admin_role
     if !self.has_role? :admin
       self.add_role :admin
     end
