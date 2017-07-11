@@ -1,0 +1,15 @@
+.panel
+  .panel-heading
+    = "#{@hotel.title} (#{@hotel.status})"
+  .panel-body
+    - if @hotel.photo?
+      = image_tag @hotel.photo.medium.url
+    - else
+      = image_tag 'default.png'
+    %p
+      = "#{@hotel.breakfast_included} #{@hotel.wifi_included}"
+    %p
+      = @hotel.room_description
+  .panel-footer
+    = @hotel.updated_at
+  = link_to 'Назад', url_for(:back)

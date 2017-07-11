@@ -18,34 +18,31 @@ class User < ApplicationRecord
 
   before_save :ensure_authentication_token!,
               :email_downcase
-  after_save :user_role
+  after_save :default_role
 
-  def ensure_authentication_token!
-    if authentication_token.blank?
-      self.authentication_token = generate_authentication_token
-    end
-  end
-
-  def email_downcase
-    self.email.downcase!
-  end
-
-  def user_role
-    self.add_role :user
-  end
-
-  def admin_role
-    if !self.has_role? :admin
-      self.add_role :admin
-    end
+  def full_name
+    "#{self.first_name} #{self.last_name}"
   end
 
   private
-
-  def generate_authentication_token
-    loop do
-      token = Devise.friendly_token
-      break token unless User.where(authentication_token: token).first
+    def ensure_authentication_token!
+      if authentication_token.blank?
+        self.authentication_token = generate_authentication_token
+      end
     end
-  end
+
+    def email_downcase
+      self.email.downcase!
+    end
+
+    def default_role
+      self.add_role :user, Hotel
+    end
+
+    def generate_authentication_token
+      loop do
+        token = Devise.friendly_token
+        break token unless User.where(authentication_token: token).first
+      end
+    end
 end

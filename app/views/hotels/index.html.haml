@@ -1,0 +1,5 @@
+= link_to 'Добавить', new_hotel_path
+- if @hotels.any?
+  = render @hotels
+- else
+  %p Удивительное рядом

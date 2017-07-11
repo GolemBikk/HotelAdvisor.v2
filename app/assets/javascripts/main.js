@@ -5,4 +5,5 @@ $(document).ready(function() {
     set_sliders();
     set_rating_stars();
     set_default_btn();
+    set_photo_loader();
 });

@@ -7,11 +7,11 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_user!
-    before_action :authenticate_admin!
+    before_action :authenticate_admin
 
-    def authenticate_admin!
-      if !current_user.has_role? :admin
-        flash[:notice] = "This user haven't admin root"
+    def authenticate_admin
+      unless current_user.has_role? :admin
+        flash[:warning] = 'У вас нет прав доступа!'
         redirect_to root_path
       end
     end

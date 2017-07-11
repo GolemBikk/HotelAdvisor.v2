@@ -16,6 +16,9 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore uploads
+/uploads/*
+
 # Ignore my filelist
 database.yml
 .idea

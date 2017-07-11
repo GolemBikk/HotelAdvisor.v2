@@ -1,9 +1,10 @@
 class HotelsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
+  before_action :owner, :only => [:edit, :update, :destroy]
 
   def index
     params[:page] ||= 1
-    Hotel.all.page(params[:page]).per 30
+    @hotels = Hotel.all.page(params[:page]).per 30
   end
 
   def show
@@ -25,7 +26,6 @@ class HotelsController < ApplicationController
   end
 
   def edit
-    find
   end
 
   def update
@@ -37,7 +37,6 @@ class HotelsController < ApplicationController
   end
 
   def destroy
-    find
     @hotel.destroy
 
     redirect_to hotels_path
@@ -53,5 +52,13 @@ class HotelsController < ApplicationController
       params.require(:hotel).permit(:wifi_included, :breakfast_included,
                                     :room_description, :price_for_room,
                                     :title, :address, :photo, :user_id)
+    end
+
+    def owner
+      find
+      if current_user.id != @hotel.user_id
+        flash[:error] = 'У вас нет доступа к чужим записям'
+        redirect_to root_path
+      end
     end
 end

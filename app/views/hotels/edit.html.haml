@@ -1,0 +1,25 @@
+%h1 Редактирование записи
+= simple_form_for @hotel, :html => { :multipart => true } do |f|
+  = f.error_notification
+  = f.hidden_field :id
+  = f.hidden_field :user_id, :value => current_user.id
+  = f.input :title, label: 'Название', required: true, autofocus: true,
+              placeholder: 'Вспомните название отеля'
+  = f.input :address, label: 'Адрес', required: true,
+              placeholder: 'Адрес бы тоже не помешал'
+  = f.input :room_description, label: 'Описание комнаты', as: :text, required: true,
+              :input_html => { rows: '5' }, placeholder: 'Hotel description'
+  = f.input :price_for_room, label: 'Цена за сутки', required: true,
+              placeholder: 'Только честно'
+  = f.input :breakfast_included, label: 'Есть завтрак',
+              as: :boolean
+  = f.input :wifi_included, label: 'Есть wi-fi',
+                as: :boolean
+  = f.file_field :photo, label: 'Изображение', id: 'image_load'
+  = f.hidden_field :photo_cache
+  - if @hotel.photo?
+    = image_tag(@hotel.photo_url, :id => 'image_show')
+  - else
+    %img#image_show
+  = f.button :submit, 'Сохранить', class: 'btn btn-success btn-lg'
+  = link_to 'Назад', url_for(:back), class: 'btn btn-lg'

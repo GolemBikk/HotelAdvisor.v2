@@ -1,6 +1,8 @@
 class Hotel < ApplicationRecord
+  resourcify
   belongs_to :user
 
+  default_scope -> { order('updated_at DESC') }
   validates :title, presence: true,
             length: { maximum: 50 }
   validates :address, presence: true,

@@ -1,0 +1,12 @@
+.panel
+  .panel-heading
+    = hotel.title
+  .panel-body
+    - if hotel.photo?
+      = image_tag hotel.photo.medium.url
+    - else
+      = image_tag 'default.png'
+    = "#{hotel.breakfast_included} #{hotel.wifi_included}"
+  .panel-footer
+    = hotel.updated_at
+  = link_to 'Редактировать', edit_hotel_path(hotel)
