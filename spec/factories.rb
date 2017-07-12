@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :review do
+    
+  end
   factory :hotel do
     
   end

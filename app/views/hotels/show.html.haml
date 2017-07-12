@@ -13,3 +13,5 @@
   .panel-footer
     = @hotel.updated_at
   = link_to 'Назад', url_for(:back)
+
+  = rating_for @hotel, 'title'

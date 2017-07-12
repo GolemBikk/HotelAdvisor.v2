@@ -1,8 +1,12 @@
 class Hotel < ApplicationRecord
-  resourcify
-  belongs_to :user
-
   default_scope -> { order('updated_at DESC') }
+  scope :approved, -> { where(status: 'approved') }
+  scope :top, -> { include('rating_cache').order(rating_cache.avg :desc).limit(5) }
+  scope :max_price, -> { maximum :price_for_room }
+
+  belongs_to :user
+  has_many :reviews, dependent: :destroy
+
   validates :title, presence: true,
             length: { maximum: 50 }
   validates :address, presence: true,
@@ -12,14 +16,16 @@ class Hotel < ApplicationRecord
 
   before_save :pending_status
 
-  self
+  resourcify
+  ratyrate_rateable 'title'
+  mount_base64_uploader :photo, PhotoUploader, file_name: -> (u) { u.username }
 
+  self
     def filter(args)
 
     end
 
   private
-
     def pending_status
       self.status = 'pending'
     end
@@ -31,6 +37,4 @@ class Hotel < ApplicationRecord
     def by_address(address)
 
     end
-
-  mount_base64_uploader :photo, PhotoUploader, file_name: -> (u) { u.username }
 end

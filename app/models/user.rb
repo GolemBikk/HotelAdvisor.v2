@@ -1,17 +1,14 @@
 class User < ApplicationRecord
-  rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+[a-z\d]\.[a-z]+\z/i
 
-  has_many :hotels
+  has_many :hotels, dependent: :destroy
+  has_one :reviews, dependent: :destroy
 
   validates :first_name, presence: true,
             length: { maximum: 50 }
   validates :last_name, presence: true,
             length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+[a-z\d]\.[a-z]+\z/i
+
   validates :email, presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
@@ -20,8 +17,19 @@ class User < ApplicationRecord
               :email_downcase
   after_save :default_role
 
+  rolify
+  ratyrate_rater
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   def full_name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def hotels_count
+    Hotel.where(user_id: self.id).size
   end
 
   private

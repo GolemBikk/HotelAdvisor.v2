@@ -1,5 +1,9 @@
 = link_to 'Добавить', new_hotel_path
 - if @hotels.any?
+  = paginate @hotels
+
   = render @hotels
+
+  = paginate @hotels
 - else
   %p Удивительное рядом

@@ -17,7 +17,7 @@
 .byebug_history
 
 # Ignore uploads
-/uploads/*
+/public/uploads/*
 
 # Ignore my filelist
 database.yml
