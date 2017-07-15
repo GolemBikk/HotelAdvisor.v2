@@ -1,3 +1,7 @@
 %div.banner-body.bottom-line-border
-  - 5.times do |n|
-    %div Отель
+  - if @hotels.any?
+    - @hotels.each_with_index do |hotel, i|
+      .top-hotel{ class: "top-hotel-#{i + 1}"}
+        = render 'static_pages/hotel', hotel: hotel
+    .top-hotel{ class: "top-hotel-5"}
+      = render 'static_pages/hotel', hotel: @hotels[3]

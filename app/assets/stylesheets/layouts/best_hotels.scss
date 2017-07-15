@@ -1,0 +1,91 @@
+.top-hotel {
+  margin-bottom: 1%;
+  img {
+    width: 100%;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+.top-title {
+  position: relative;
+  color: white;
+  text-align: right;
+  padding-right: 3%;
+  .hotel-name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+.top-hotel:hover{
+  .top-title {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+.top-hotel-1 {
+  height: 500px;
+  width: 59%;
+  float: left;
+
+  .top-title {
+    margin-top: -500px;
+    padding-top: 430px;
+    height: 500px;
+  }
+  img {
+    height: 500px;
+  }
+}
+.top-hotel-2 {
+  height: 245px;
+  width: 40%;
+  float: right;
+  .top-title {
+    margin-top: -245px;
+    padding-top: 175px;
+    height: 245px;
+  }
+  img {
+    height: 245px;
+  }
+
+}
+.top-hotel-3 {
+  height: 245px;
+  width: 40%;
+  float: right;
+  .top-title {
+    margin-top: -245px;
+    padding-top: 175px;
+    height: 245px;
+  }
+  img {
+    height: 245px;
+  }
+}
+.top-hotel-4 {
+  height: 400px;
+  width: 49%;
+  float: left;
+  .top-title {
+    margin-top: -400px;
+    padding-top: 330px;
+    height: 400px;
+  }
+  img {
+    height: 400px;
+  }
+}
+.top-hotel-5 {
+  height: 400px;
+  width: 50%;
+  float: right;
+  .top-title {
+    margin-top: -400px;
+    padding-top: 330px;
+    height: 400px;
+  }
+  img {
+    height: 400px;
+  }
+}

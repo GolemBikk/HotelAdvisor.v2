@@ -5,9 +5,9 @@
 @import "layouts/best_hotels";
 @import "layouts/last_news";
 
-.search-banner {
+.big-search-banner {
   height: 500px;
-  background-image: url("paradise.jpg");
+  background-image: image-url("paradise.jpg");
   padding: 8% 15% 0% 15%;
 
   .title {
@@ -17,22 +17,35 @@
   }
 }
 
-.best-banner {
+.small-search-banner {
+  padding: 1% 15%;
+  background-color: #5d5d5d;
 
-  .title {
-    text-align: center;
-    margin-bottom: 5px;
+  label {
+    color: white;
+  }
+  .input-text {
+    margin-bottom: 0px;
+    input {
+      border-radius: 0px;
+    }
+  }
+
+  .search-btn {
+    height: 38px;
+    margin-top: -2px;
+  }
+}
+
+.best-banner {
+  .banner-body {
+    height: 921px;
   }
 }
 
 .news-banner {
-
-  .title {
-    text-align: center;
-    margin-bottom: 5px;
-  }
 }
 
 .banner-body {
-  margin: 5px 15% 20px 15%;
+  margin: 5px 10% 20px 10%;
 }

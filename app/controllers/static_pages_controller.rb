@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
     # flash[:info] = 'Некоторый текст для сообщения'
     # flash[:danger] = 'Некоторый текст для сообщения'
     # flash[:success] = 'Некоторый текст для сообщения'
+    @hotels = Hotel.all.top
   end
 
   def help

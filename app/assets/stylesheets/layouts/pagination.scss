@@ -1,0 +1,51 @@
+.top-pagination-group {
+  .btn {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .btn.current {
+    border-bottom-color: cornflowerblue;
+  }
+  .btn:hover {
+    background-color: white;
+    border-bottom-color: cornflowerblue;
+  }
+}
+
+.bottom-pagination-group {
+  .btn {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+  .btn.current {
+    border-top-color: cornflowerblue;
+  }
+  .btn:hover {
+    border-top-color: cornflowerblue;
+  }
+}
+
+.pagination-group {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.pagination {
+
+  .btn {
+    border: none;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    a {
+      color: cornflowerblue;
+    }
+
+    a:hover {
+      color: cornflowerblue;
+      text-decoration: none;
+    }
+  }
+  .btn:hover {
+    background-color: white;
+  }
+}

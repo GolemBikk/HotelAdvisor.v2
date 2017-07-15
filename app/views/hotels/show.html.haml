@@ -1,17 +1,51 @@
-.panel
-  .panel-heading
-    = "#{@hotel.title} (#{@hotel.status})"
-  .panel-body
-    - if @hotel.photo?
-      = image_tag @hotel.photo.medium.url
-    - else
-      = image_tag 'default.png'
-    %p
-      = "#{@hotel.breakfast_included} #{@hotel.wifi_included}"
-    %p
-      = @hotel.room_description
-  .panel-footer
-    = @hotel.updated_at
-  = link_to 'Назад', url_for(:back)
+= render 'layouts/small_search_form'
 
-  = rating_for @hotel, 'title'
+.hotel-show-body
+  .hotel-show-head
+    .hotel-left
+      %p.hotel-title
+        = @hotel.title
+        - @hotel.star_rating.times do
+          %i.glyphicon.glyphicon-star.star_rating
+      %p.hotel-address
+        = @hotel.address
+    .hotel-right
+      - if @hotel.title_average
+        .hotel-rating
+          = "#{score_to_s @hotel.title_average.avg}"
+          .hotel-score
+            = number_with_precision(@hotel.title_average.avg, precision: 1)
+        %p.hotel-rater-count
+          = "Основано на оценках: #{@hotel.title_average.qty}"
+      - else
+        %p.hotel-rating
+          Оценки пока отсутствуют
+  .hotel-content.bottom-line-border
+    .row
+      .col-xs-8
+        - if @hotel.photo?
+          = image_tag @hotel.photo.medium.url
+        - else
+          = image_tag 'default.png'
+      .col-xs-4.hotel-description
+        %h3 Описание
+        %p
+          = @hotel.room_description
+
+  .hotel-includes.bottom-line-border
+    .include-title
+      %h4
+        Особенности:
+    .include-item
+      %i.glyphicon.glyphicon-cutlery{class: "include-#{@hotel.breakfast_included}"}
+      %p Наличие завтрака
+    .include-item
+      %i.glyphicon.glyphicon-signal{class: "include-#{@hotel.wifi_included}"}
+      %p Бесплатный wi-fi
+  .hotel-reviews
+    %h4 Отзывы проверенных посетителей
+    = rating_for @hotel, 'title', enable_half: true, star: 10
+  -#= rating_for_user @hotel, current_user, 'title', enable_half: true, star: 10
+
+  = link_to 'На предыдущую страницу', url_for(:back), class: 'btn my-btn'
+  = link_to 'Вверх', '#', class: 'btn my-btn'

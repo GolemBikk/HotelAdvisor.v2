@@ -1,0 +1,10 @@
+%a{href: hotel_path(hotel)}
+  - if hotel.photo?
+    = image_tag hotel.photo.url
+  - else
+    = image_tag 'default.png'
+  .top-title
+    %p.hotel-name
+      = hotel.title
+    %p
+      = hotel.address

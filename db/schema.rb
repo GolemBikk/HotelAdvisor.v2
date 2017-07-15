@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712105837) do
+ActiveRecord::Schema.define(version: 20170714091848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170712105837) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "user_id"
+    t.integer  "star_rating",        default: 0,     null: false
     t.index ["address"], name: "index_hotels_on_address", using: :btree
     t.index ["title"], name: "index_hotels_on_title", using: :btree
     t.index ["user_id"], name: "index_hotels_on_user_id", using: :btree

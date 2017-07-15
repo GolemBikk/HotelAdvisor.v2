@@ -1,0 +1,11 @@
+.small-search-banner
+  = simple_form_for :filter, url: '#' do |f|
+    #common.row
+      .col-xs-12
+        .input-text
+          = f.input :name, required: false, label: false,
+                                  placeholder: 'Помните название?'
+        .input-text
+          = f.input :address, required: false, label: false,
+                                     placeholder: 'Знаете адрес?'
+        = f.button :submit, 'Начать поиск', class: 'search-btn'

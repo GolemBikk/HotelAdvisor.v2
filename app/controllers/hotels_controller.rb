@@ -1,10 +1,11 @@
 class HotelsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
   before_action :owner, :only => [:edit, :update, :destroy]
+  before_action :find, :only => [:show]
 
   def index
-    params[:page] ||= 1
-    @hotels = Hotel.all.page(params[:page]).per 30
+    page_num = params[:page] || 1
+    @hotels = Hotel.page(page_num)
   end
 
   def show
@@ -57,7 +58,7 @@ class HotelsController < ApplicationController
     def owner
       find
       if current_user.id != @hotel.user_id
-        flash[:error] = 'У вас нет доступа к чужим записям'
+        flash[:danger] = 'У вас нет доступа к чужим записям'
         redirect_to root_path
       end
     end

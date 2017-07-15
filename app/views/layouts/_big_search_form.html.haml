@@ -1,0 +1,51 @@
+.big-search-banner
+  .title
+    %h1 НАЧНИТЕ СВОЁ ПУТЕШЕСТВИЕ ЗДЕСЬ!
+    %h4
+      Ищите, просматривайте информацию об отелях, читайте отзывы
+      и участвуйте в формировании рейтинга
+  .panel.panel-search
+    .panel-body
+      = simple_form_for :filter, url: '#' do |f|
+        .bottom-line-border
+          #common.row
+            .col-xs-12
+              .input-text
+                = f.label :name, 'Название:'
+                = f.input :name, required: false, label: false,
+                                  placeholder: 'Помните название?'
+              .input-text
+                = f.label :address, 'Адрес:'
+                = f.input :address, required: false, label: false,
+                                     placeholder: 'Знаете адрес?'
+              = f.button :submit, 'Начать поиск', class: 'search-btn'
+          #details.row
+            .col-xs-10
+              .input-number
+                = f.label :star_rating, 'Количество звёзд:'
+                = f.hidden_field :star_rating
+                #stars.starrr
+              .input-range
+                = f.label :user_rating, 'Оценка пользователей:'
+                = f.hidden_field :user_rating
+                %div
+                  %input#rating.span2{'data-slider-max' => 10, 'data-slider-min' => 1,
+                                      'data-slider-step' => 0.5, 'data-slider-value' => [4,7],
+                                      'data-slider-id' => 'rating', type: 'text', value: ''}/
+              .input-range
+                = f.label :price, 'Цена:'
+                = f.hidden_field :price
+                %div
+                  %input#price.span2{'data-slider-max' => 450, 'data-slider-min' => 10,
+                                     'data-slider-step' => 10, 'data-slider-value' => [50,400],
+                                     'data-slider-id' => 'price', type: 'text', value: ''}/
+              .input-checkbox
+                = f.input :breakfast, as: :boolean, required: false,
+                                      label: 'Завтрак'
+              .input-checkbox
+                = f.input :wifi, as: :boolean, required: false,
+                                 label: 'Wi-Fi'
+      .center
+        %button#details-btn
+          Уточните ваш поиск
+          %i.glyphicon.glyphicon-triangle-bottom

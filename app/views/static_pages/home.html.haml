@@ -1,22 +1,15 @@
 = provide :title, 'Home'
 
-.search-banner
-  .title
-    %h1 НАЧНИТЕ СВОЁ ПУТЕШЕСТВИЕ ЗДЕСЬ!
-    %h4
-      Ищите, просматривайте информацию об отелях, читайте отзывы
-      и участвуйте в формировании рейтинга
-
-  = render 'search_form'
+= render 'layouts/big_search_form'
 
 .best-banner
   .title
-    %h2 Лучшие отели по мнению пользователей
+    %h3.my-panel-title Лучшие отели по мнению пользователей
 
   = render 'best_hotels'
 
 .news-banner
   .title
-    %h2 Последние новости сайта
+    %h3.my-panel-title Последние новости сайта
 
   = render 'last_news'

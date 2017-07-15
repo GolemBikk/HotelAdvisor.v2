@@ -1,12 +1,26 @@
-.panel
-  .panel-heading
-    =link_to hotel.title, hotel_path(hotel)
-  .panel-body
-    - if hotel.photo?
-      = image_tag hotel.photo.medium.url
-    - else
-      = image_tag 'default.png'
-    = "#{hotel.breakfast_included} #{hotel.wifi_included}"
-  .panel-footer
-    = hotel.updated_at
-  = link_to 'Редактировать', edit_hotel_path(hotel)
+.card
+  - if hotel.photo?
+    %a{href: hotel_path(hotel)}
+      = image_tag hotel.photo.url, class: 'card-image'
+  - else
+    %a{href: hotel_path(hotel)}
+      = image_tag 'default.png', class: 'card-image'
+  .card-block
+    %div.main.bottom-line-border
+      %p.title
+        = link_to hotel.title, hotel_path(hotel)
+      - if hotel.title_average
+        %p.score
+          = "#{number_with_precision(hotel.title_average.avg, precision: 1)} #{score_to_s hotel.title_average.avg}"
+        %p.score.rater-count
+          = "Основано на оценках: #{hotel.title_average.qty}"
+      - else
+        %p.score
+          Оценки пока отсутствуют
+      %p.star_rating
+        - hotel.star_rating.times do
+          %i.glyphicon.glyphicon-star
+    %p
+      = link_to 'Просмотреть', hotel_path(hotel)
+      - if user_signed_in? && hotel.user_id == current_user.id
+        = link_to 'Редактировать', edit_hotel_path(hotel)

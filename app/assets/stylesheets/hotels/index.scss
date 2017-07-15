@@ -1,0 +1,64 @@
+.include-true {
+  color: #238025;
+}
+
+.include-false {
+  color: #ff372c;
+}
+
+.card-list {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.card {
+  position: relative;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid white;
+  width: 31%;
+  margin: 10px 11px 10px 11px;
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .card-block {
+    padding: 15px;
+    height: 350px;
+
+    .main {
+      margin-bottom: 10px;
+    }
+
+    .title {
+      width: 50%;
+      float: left;
+      height: 40px;
+      a {
+        color: cornflowerblue;
+      }
+      a:hover {
+        color: cornflowerblue;
+      }
+    }
+    .score {
+      width: 50%;
+      float: right;
+      text-align: right;
+      margin-bottom: 10px;
+      color: cornflowerblue;
+    }
+    .score.rater-count {
+      font-size: 13px;
+      color: black;
+    }
+  }
+  .card-block:hover {
+    box-shadow:  0 0 10px rgba(0,0,0,0.5);
+  }
+  .left {
+    float: left;
+  }
+}
+

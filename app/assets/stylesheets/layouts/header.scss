@@ -1,63 +1,93 @@
-#logo{ //надо корректировать
-  color: black;
-  font-family: monospace;
-  font-size: 22px;
-  font-weight: 900;
+#logo { //надо корректировать
+  a {
+    padding-top: 0;
 
-  a{
-    padding-top: 10px;
+    img {
+      height: 50px;
+      margin-top: -3px;
+    }
   }
 }
 
-#btn-login{
+#btn-login {
   color: cornflowerblue;
 }
-#btn-login:hover{
+
+#btn-login:hover {
   background-color: cornflowerblue;
   color: white;
 }
 
-#btn-register{
+#btn-logout {
+  color: cornflowerblue;
+
+  i {
+    top: 3px;
+  }
+}
+#btn-logout:hover {
   background-color: cornflowerblue;
   color: white;
 }
-#btn-register:hover{
+
+#btn-register {
+  background-color: cornflowerblue;
+  color: white;
+}
+#btn-register:hover {
   background-color: white;
   color: cornflowerblue;
 }
 
-.btn{
+.btn {
   border-color: cornflowerblue;
   border-width: 2px;
 }
 
-.collapse{
+.collapse {
   margin-top: 6px;
 }
 
-.navbar{
+.navbar {
   margin-bottom: 0;
   padding: 10px;
 }
 
-.container-fluid{
+.container-fluid {
   padding-left: 7%;
   padding-right: 7%;
 }
 
-.navbar-nav{
+.navbar-nav {
 
-  li{
+  li {
     padding-left: 5px;
     padding-right: 5px;
 
-    a{
+    a {
       padding-top: 10px;
       padding-bottom: 10px;
       font-weight: 600;
       color: darkorange;
     }
-    a:hover{
+    a:hover {
+      background-color: inherit;
+    }
+  }
+}
+
+#account-menu {
+  right: 5px;
+}
+
+.dropdown-menu {
+  border-radius: 0px;
+  border-color: darkgray;
+
+  li {
+
+    a:hover {
+      color: darkorange;
       background-color: inherit;
     }
   }

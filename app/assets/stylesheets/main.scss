@@ -1,7 +1,11 @@
 @import "layouts/header";
 @import "layouts/footer";
 @import "static-pages/home";
+@import "users/sign-in";
+@import "hotels/index";
+@import "hotels/show";
 @import "starrr";
+@import "layouts/pagination";
 
 .bottom-line-border {
   border-bottom: 1px solid darkgray;
@@ -25,4 +29,12 @@
     border-color: darkgray;
     margin: 0;
   }
+}
+.star_rating {
+  color: darkorange;
+}
+.my-panel-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
 }

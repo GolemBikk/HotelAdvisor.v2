@@ -1,7 +1,8 @@
 class Hotel < ApplicationRecord
-  default_scope -> { order('updated_at DESC') }
+  default_scope -> { includes(:title_average).references(:title_average)
+                                                   .order('hotels.updated_at DESC')}
   scope :approved, -> { where(status: 'approved') }
-  scope :top, -> { include('rating_cache').order(rating_cache.avg :desc).limit(5) }
+  scope :top, -> { order('rating_caches.avg DESC').limit(5) }
   scope :max_price, -> { maximum :price_for_room }
 
   belongs_to :user
@@ -16,14 +17,22 @@ class Hotel < ApplicationRecord
 
   before_save :pending_status
 
+  paginates_per 9
   resourcify
   ratyrate_rateable 'title'
   mount_base64_uploader :photo, PhotoUploader, file_name: -> (u) { u.username }
 
-  self
-    def filter(args)
+  def self.filter(args)
 
-    end
+  end
+
+  def rating
+    RatingCache.find_by_cacheable_id(self.id).avg
+  end
+
+  def rater_count
+    RatingCache.find_by_cacheable_id(self.id).qty
+  end
 
   private
     def pending_status

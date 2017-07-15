@@ -1,0 +1,29 @@
+.login-background {
+  background-image: image-url("paradise.jpg");
+  height: 590px;
+}
+
+.my-modal {
+  display: block;
+  background: rgba(0,0,0, 0.7);
+
+  .my-modal-body {
+    background-color: white;
+    margin: 1% 25% 0 25%;
+    height: 96%;
+    border-radius: 5px;
+
+    .input-text {
+      display: block;
+    }
+
+    .input-checkbox {
+      margin-left: 20px;
+      float: none;
+    }
+
+    .login-btn {
+
+    }
+  }
+}

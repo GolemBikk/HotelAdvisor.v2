@@ -1,9 +1,14 @@
-= link_to 'Добавить', new_hotel_path
+= render 'layouts/big_search_form'
+
+%h3.my-panel-title
+  Найдите подходящий вариант и отправляйтесь!
 - if @hotels.any?
-  = paginate @hotels
-
-  = render @hotels
-
-  = paginate @hotels
+  .top-pagination-group
+    = paginate @hotels
+  .card-list
+    - @hotels.each do |hotel|
+      = render hotel
+  .bottom-pagination-group
+    = paginate @hotels
 - else
   %p Удивительное рядом
