@@ -10,12 +10,12 @@ function set_default_btn() {
 
     $("#details-btn").on('click', function(){
         $('#details').toggle();
-        change_gliphicon();
+        change_gliphicon("#details-btn");
     });
 }
 
-function change_gliphicon() {
-    var tag = $("#details-btn").find('i');
+function change_gliphicon(element) {
+    var tag = $(element).find('i');
     if (tag.hasClass('glyphicon-triangle-bottom')){
         tag.removeClass('glyphicon-triangle-bottom').addClass('glyphicon-triangle-top')
     }

@@ -45,6 +45,8 @@
   .hotel-reviews
     %h4 Отзывы проверенных посетителей
     = rating_for @hotel, 'title', enable_half: true, star: 10
+
+    = render 'reviews/new_form', hotel_id: @hotel.id
   -#= rating_for_user @hotel, current_user, 'title', enable_half: true, star: 10
 
   = link_to 'На предыдущую страницу', url_for(:back), class: 'btn my-btn'

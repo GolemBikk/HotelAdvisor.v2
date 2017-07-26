@@ -1,0 +1,8 @@
+= simple_form_for @review, :html => { :multipart => true } do |f|
+  = f.error_notification
+  = f.hidden_field :rate_id
+  = f.input :title, label: 'Заголовок', required: true, autofocus: true,
+
+  = f.input :room_description, label: 'Текст отзыва', as: :text, required: true,
+              :input_html => { rows: '5' }, placeholder: 'Опишите свои впечатления'
+  = f.button :submit, 'Сохранить', class: 'btn btn-success btn-lg'

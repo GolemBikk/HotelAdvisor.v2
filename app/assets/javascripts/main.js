@@ -6,4 +6,5 @@ $(document).ready(function() {
     set_rating_stars();
     set_default_btn();
     set_photo_loader();
+    check_reviews_length();
 });

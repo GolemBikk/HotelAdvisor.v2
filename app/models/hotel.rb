@@ -1,12 +1,19 @@
 class Hotel < ApplicationRecord
-  default_scope -> { includes(:title_average).references(:title_average)
-                                                   .order('hotels.updated_at DESC')}
+  default_scope -> { order('hotels.created_at DESC') }
   scope :approved, -> { where(status: 'approved') }
-  scope :top, -> { order('rating_caches.avg DESC').limit(5) }
-  scope :max_price, -> { maximum :price_for_room }
+  scope :max_price_for_room, -> { approved.maximum :price_for_room }
+  scope :with_best_rate, -> { includes(:best_rate) }
+  scope :rated, -> {
+    includes(:title_average)
+  }
+  scope :rated_top, -> (top_count) {
+    joins(:title_average).reorder('rating_caches.avg DESC').limit(top_count)
+  }
 
   belongs_to :user
-  has_many :reviews, dependent: :destroy
+  has_one :best_rate,
+          -> { with_rater.with_review },
+          class_name: 'Rate', foreign_key: :rateable_id
 
   validates :title, presence: true,
             length: { maximum: 50 }
@@ -20,18 +27,12 @@ class Hotel < ApplicationRecord
   paginates_per 9
   resourcify
   ratyrate_rateable 'title'
-  mount_base64_uploader :photo, PhotoUploader, file_name: -> (u) { u.username }
+  mount_base64_uploader :photo,
+                        PhotoUploader,
+                        file_name: -> (u) { u.username }
 
   def self.filter(args)
 
-  end
-
-  def rating
-    RatingCache.find_by_cacheable_id(self.id).avg
-  end
-
-  def rater_count
-    RatingCache.find_by_cacheable_id(self.id).qty
   end
 
   private

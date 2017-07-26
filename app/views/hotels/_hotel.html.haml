@@ -6,7 +6,7 @@
     %a{href: hotel_path(hotel)}
       = image_tag 'default.png', class: 'card-image'
   .card-block
-    %div.main.bottom-line-border
+    .main.bottom-line-border
       %p.title
         = link_to hotel.title, hotel_path(hotel)
       - if hotel.title_average
@@ -20,7 +20,33 @@
       %p.star_rating
         - hotel.star_rating.times do
           %i.glyphicon.glyphicon-star
-    %p
-      = link_to 'Просмотреть', hotel_path(hotel)
-      - if user_signed_in? && hotel.user_id == current_user.id
-        = link_to 'Редактировать', edit_hotel_path(hotel)
+    - if hotel.best_rate
+      .best_review
+        - if hotel.best_rate.text.length < 150
+          %p.text-preview
+            Большой текст текст текст текст текст текст текст текст
+            текст текст текст текст текст текст текст текст текст
+            текст текст текст...
+          %p.text-full
+            Большой текст текст текст текст текст текст текст текст
+            текст текст текст текст текст текст текст текст текст
+            текст текст  текст текст текст текст текст текст текст
+            текст текст текст текст текст текст текст текст текст
+            текст текст  текст текст текст текст текст текст текст
+            текст текст текст текст текст текст текст текст текст
+            текст текст текст
+          .center
+            %button.full-text-btn
+              Показать больше
+              %i.glyphicon.glyphicon-triangle-bottom
+        - else
+          %p.text-full
+            Большой текст текст текст текст текст текст текст текст
+            текст текст текст текст
+          -# Если длина больше 150 символов - то скрываем остальное + кнопка "Показать больше"
+        %p.author
+          = hotel.best_rate.author_full_name
+    -#%p
+    -#  = link_to 'Просмотреть', hotel_path(hotel)
+    -#  - if user_signed_in? && hotel.user_id == current_user.id
+    -#    = link_to 'Редактировать', edit_hotel_path(hotel)

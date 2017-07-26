@@ -54,11 +54,41 @@
       color: black;
     }
   }
-  .card-block:hover {
-    box-shadow:  0 0 10px rgba(0,0,0,0.5);
-  }
   .left {
     float: left;
+  }
+}
+.card:hover {
+  .card-block {
+    box-shadow:  0 0 10px rgba(0,0,0,0.5);
+  }
+}
+
+.full-text-btn {
+  background-color: rgba(255, 255, 255, 0);
+  color: cornflowerblue;
+  border: none;
+  margin-bottom: 10px;
+  i {
+    top: 2px;
+  }
+}
+
+.best_review {
+  font-size: 13px;
+  position: absolute;
+  width: 91%;
+
+  .text-preview {
+    text-align: justify;
+  }
+  .text-full {
+    display: none;
+    text-align: justify;
+  }
+
+  .author {
+    font-weight: 600;
   }
 }
 
