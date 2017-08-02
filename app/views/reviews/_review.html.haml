@@ -1,0 +1,22 @@
+.user-rating
+  - if @rating
+    .with-rate
+      %h4
+        Ваша оценка
+      .center
+        .score
+          = number_with_precision(@rating.stars, precision: 1)
+        = image_tag 'star-on.png'
+    .user-review
+      - if @review.id
+        .review-title
+          = @review.title
+        .review-text
+          = @review.text
+        .review-date
+          = @review.created_at
+      - else
+        = render 'reviews/new_form'
+  - else
+    .without-rate
+      = rating_for @hotel, 'title', enable_half: true, star: 10

@@ -10,7 +10,13 @@ class HotelsController < ApplicationController
   end
 
   def show
-    @review = Review.new
+    if user_signed_in?
+      @rating = Rate.find_by_rater_id_and_rateable_id current_user.id, @hotel.id
+    end
+    unless @rating.nil?
+      @review = @rating.review || @rating.build_review
+    end
+
     # @reviews = Rate.where(rateable_id: @hotel.id);
   end
 
