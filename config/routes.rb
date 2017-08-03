@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :hotels, only: [:create, :update, :destroy]
+      resources :hotels
       resources :reviews, only: [:create]
 
       post '/rate' => 'rater#create', :as => 'rate'
