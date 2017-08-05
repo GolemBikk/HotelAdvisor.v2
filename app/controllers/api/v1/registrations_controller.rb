@@ -40,17 +40,17 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
   private
     def sign_up_params
-      params.require(:user).permit(:email, :password, :password_confirmation,
-                                   :first_name, :last_name)
+      params.permit(:email, :password, :password_confirmation,
+                    :first_name, :last_name)
     end
 
     def account_update_params
-      params.require(:user).permit(:password, :password_confirmation, :current_password,
-                                   :email, :first_name, :last_name, :login)
+      params.permit(:password, :password_confirmation, :current_password,
+                    :email, :first_name, :last_name, :login)
     end
 
     def authenticate_user_by_token
-      auth_token = params[:user][:authentication_token]
+      auth_token = params[:authentication_token]
       self.resource = User.find_by_authentication_token(auth_token)
       if resource.nil?
         @message = 'Invalid authentication token'

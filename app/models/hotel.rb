@@ -3,9 +3,8 @@ class Hotel < ApplicationRecord
   scope :approved, -> { where(status: 'approved') }
   scope :max_price_for_room, -> { approved.maximum :price_for_room }
   scope :with_best_rate, -> { includes(:best_rate) }
-  scope :rated, -> {
-    includes(:title_average)
-  }
+  scope :rated, -> { includes(:title_average) }
+  scope :rated_and_filtered, -> (filters) { rated.where(filters) }
   scope :rated_top, -> (top_count) {
     joins(:title_average).reorder('rating_caches.avg DESC').limit(top_count)
   }
@@ -29,22 +28,10 @@ class Hotel < ApplicationRecord
   ratyrate_rateable 'title'
   mount_base64_uploader :photo,
                         PhotoUploader,
-                        file_name: -> (u) { u.username }
-
-  def self.filter(args)
-
-  end
+                        file_name: -> (u) { u.title }
 
   private
     def pending_status
       self.status = 'pending'
-    end
-
-    def by_title(sample)
-
-    end
-
-    def by_address(address)
-
     end
 end

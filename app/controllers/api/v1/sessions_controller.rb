@@ -7,23 +7,23 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   def create
     if authenticate_by_params?
-      render json: resource, serializer: UserSerializer, status: 200
+      render json: resource, serializer: UserSerializer, status: :ok
     else
-      render json: @message, status: 400
+      render json: @error_message, status: :bad_request
     end
   end
 
   private
 
   def authenticate_by_params?
-    self.resource = User.find_by_email(params[:user][:email])
+    self.resource = User.find_by_email(params[:email])
     if resource.nil?
-      @message = 'Invalid email'
+      @error_message = 'Invalid email'
       false
-    elsif resource.valid_password?(params[:user][:password])
+    elsif resource.valid_password?(params[:password])
       true
     else
-      @message = 'Invalid password'
+      @error_message = 'Invalid password'
       false
     end
   end
