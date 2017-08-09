@@ -19,12 +19,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      devise_for :users
+
       resources :hotels
       resources :reviews, only: [:create]
 
       post '/rate' => 'rater#create', :as => 'rate'
 
-      devise_for :users
     end
   end
 

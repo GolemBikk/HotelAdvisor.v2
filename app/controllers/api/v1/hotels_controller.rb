@@ -1,12 +1,12 @@
 class Api::V1::HotelsController < ApiController
-  before_action :authenticate_by_token, except: [:get_all, :get_by_id]
-  before_action :find, except: [:get_all, :create]
+  before_action :authenticate_by_token, except: [:index, :show]
+  before_action :find, except: [:index, :create]
   before_action :owner, only: [:update, :destroy]
-  before_action :prepare_filters, only: [:get_all]
+  before_action :prepare_filters, only: [:index]
 
   respond_to :json
 
-  def get_all
+  def index
     params[:page_num] ||= 1
     params[:page_size] ||= @_default_per_page
     if @filters.any?
@@ -22,7 +22,7 @@ class Api::V1::HotelsController < ApiController
     end
   end
 
-  def get_by_id
+  def show
     render json: @hotel, serializer: HotelSerializer, status: :ok
   end
 
