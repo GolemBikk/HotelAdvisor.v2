@@ -1,28 +1,21 @@
 class Api::V1::HotelsController < ApiController
-  before_action :authenticate_by_token, except: [:get_all, :get_by_id]
-  before_action :find, except: [:get_all, :create]
+  before_action :authenticate_by_token, except: [:index, :show]
+  before_action :find, except: [:index, :create]
   before_action :owner, only: [:update, :destroy]
-  before_action :prepare_filters, only: [:get_all]
+  before_action :prepare_hotels, only: [:index]
 
   respond_to :json
 
-  def get_all
-    params[:page_num] ||= 1
-    params[:page_size] ||= @_default_per_page
-    if @filters.any?
-      @hotels = Hotel.rated_and_filtered(@filters)
-    else
-      @hotels = Hotel.rated.page(params[:page_num]).per(params[:page_size])
-    end
+  def index
     if @hotels.nil? || !@hotels.any?
-      @error_message = 'No hotels for current filter'
+      @error_message = 'No hotels was found by request'
       render json: @error_message, status: :not_found
     else
       render json: @hotels, each_serializer: HotelCollectionSerializer, status: :ok
     end
   end
 
-  def get_by_id
+  def show
     render json: @hotel, serializer: HotelSerializer, status: :ok
   end
 
@@ -76,7 +69,29 @@ class Api::V1::HotelsController < ApiController
                     :title, :address, :photo, :user_id)
     end
 
-    def prepare_filters
+    def prepare_hotels
+      check_filters
+      return filtered if @filters.any?
+      return for_owner if params[:user_id]
+      return top if params[:top_count]
+      params[:page_num] ||= 1
+      params[:page_size] ||= @_default_per_page
+      @hotels = Hotel.rated.page(params[:page_num]).per(params[:page_size])
+    end
+
+    def top
+      @hotels = Hotel.rated_top(params[:top_count])
+    end
+
+    def for_owner
+      @hotels = Hotel.rated.find_by_user_id(params[:user_id])
+    end
+
+    def filtered
+      @hotels = Hotel.rated_and_filtered(@filters)
+    end
+
+    def check_filters
       @filters = {}
       params.each do |key, value|
         case key
@@ -85,7 +100,8 @@ class Api::V1::HotelsController < ApiController
           when 'address'
             @filters[:address] = value
           when 'star_rating'
-            @filters[:star_rating] = to_r value
+            Rails.logger.info("INFO " + value)
+            @filters[:star_rating] = mto_a(value)
           when 'user_rating'
             @filters[:rating_caches] = { avg: to_r(value) }
           when 'breakfast_included'
@@ -94,6 +110,11 @@ class Api::V1::HotelsController < ApiController
             @filters[:wifi_included] = value
         end
       end
+    end
+
+    def mto_a(string)
+      array = string.tr('[]','').split(',').map{|c| c.to_i}
+      array
     end
 
     def to_r(string)

@@ -3,7 +3,7 @@ class UserSerializer < ActiveModel::Serializer
              :first_name, :last_name, :email, :gravatar
 
   def gravatar
-    size = 80
+    size = 160
     gravatar = Digest::MD5::hexdigest(object.email).downcase
     "http://gravatar.com/avatar/#{gravatar}.png?s=#{size}"
   end
