@@ -1,6 +1,8 @@
 class Hotel < ApplicationRecord
   default_scope -> { order('hotels.created_at DESC') }
   scope :approved, -> { where(status: 'approved') }
+  scope :for_owner, -> (user_id) { find_by_user_id(user_id) }
+  scope :sorted_by, -> (field, value) { reorder("hotels.#{field} #{value}") }
   scope :max_price_for_room, -> { approved.maximum :price_for_room }
   scope :with_best_rate, -> { includes(:best_rate) }
   scope :rated, -> { includes(:title_average) }
